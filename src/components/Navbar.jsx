@@ -1,9 +1,9 @@
-import { useContext, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { MyContext } from "../Context";
 
 
 function Navbar() {
-  const { showAddInvoice, setAddInvoice, allInvoice, setAllInvoice, filteredItems, setFiltereItems} = useContext(MyContext);
+  const { showAddInvoice, setAddInvoice, allInvoice,  setFilteredItems} = useContext(MyContext);
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleClick = () => {
@@ -14,7 +14,10 @@ function Navbar() {
     return  allInvoice.filter ((invoice) => invoice.customerName.toLowerCase().includes(searchTerm.toLowerCase()))
   },[searchTerm])
 
-  setFiltereItems(filtered)
+  useEffect (() =>{
+    setFilteredItems(filtered)
+  },[filtered])
+
 
 
  

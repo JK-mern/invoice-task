@@ -11,7 +11,7 @@ function App() {
   const [invoice, setInvoice] = useState({});
   const [allInvoice, setAllInvoice] = useState(invoices);
   const [showAddItem, setShowAddItem] = useState(false);
-  const [filteredItems, setFiltereItems] = useState(allInvoice);
+  const [filteredItems, setFilteredItems] = useState(allInvoice);
   return (
     <>
       <MyContext.Provider
@@ -27,7 +27,7 @@ function App() {
           allInvoice,
           setAllInvoice,
           filteredItems,
-          setFiltereItems,
+          setFilteredItems,
         }}
       >
         <Navbar />
