@@ -9,6 +9,7 @@ import Model from "./Model";
 
 function AddInvoice() {
   const { showAddInvoice, setShowAddItem, showAddItem,invoice,setInvoice,setAddInvoice,setItems, items  } = useContext(MyContext);
+  
 
   const handleAddTask = () => {
     setShowAddItem(!showAddItem);
@@ -34,7 +35,7 @@ function AddInvoice() {
 
   }
 
-  console.log(invoices)
+
 
   const handleCancel = () =>{
     setAddInvoice(!showAddInvoice);

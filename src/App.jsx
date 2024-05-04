@@ -3,12 +3,15 @@ import { MyContext } from "./Context";
 import AddInvoice from "./components/AddInvoice";
 import Navbar from "./components/Navbar";
 import ShowInvoice from "./components/ShowInvoice";
+import { invoices } from "./invoices";
 
 function App() {
   const [showAddInvoice, setAddInvoice] = useState(false);
   const [items, setItems] = useState([]);
   const [invoice, setInvoice] = useState({});
+  const [allInvoice, setAllInvoice] = useState(invoices);
   const [showAddItem, setShowAddItem] = useState(false);
+  const [filteredItems, setFiltereItems] = useState(allInvoice);
   return (
     <>
       <MyContext.Provider
@@ -21,6 +24,10 @@ function App() {
           setShowAddItem,
           invoice,
           setInvoice,
+          allInvoice,
+          setAllInvoice,
+          filteredItems,
+          setFiltereItems,
         }}
       >
         <Navbar />

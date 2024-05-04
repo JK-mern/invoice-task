@@ -1,32 +1,50 @@
-import { useContext } from "react";
+import { useContext, useMemo, useState } from "react";
 import { MyContext } from "../Context";
 
 
 function Navbar() {
- 
-  const {showAddInvoice,setAddInvoice} = useContext(MyContext)
+  const { showAddInvoice, setAddInvoice, allInvoice, setAllInvoice, filteredItems, setFiltereItems} = useContext(MyContext);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const handleClick = () =>{
-    setAddInvoice(!showAddInvoice)
-  }
+  const handleClick = () => {
+    setAddInvoice(!showAddInvoice);
+  };
+
+  const filtered = useMemo (() =>{
+    return  allInvoice.filter ((invoice) => invoice.customerName.toLowerCase().includes(searchTerm.toLowerCase()))
+  },[searchTerm])
+
+  setFiltereItems(filtered)
+
+
+ 
 
   return (
     <div>
-      <div className="bg-red-600 m-b-5 p-3 items-center ">
+      <div className="bg-red-600 m-b-5 p-3 items-center">
         <h2 className="text-white">Invoice</h2>
       </div>
-      <div className="flex  justify-between p-2 bg-red-100">
+      <div className="flex justify-between p-2 bg-red-100">
         <button
-          className="py-2 px-4  bg-red-600 text-white rounded-md hover:bg-red-300"
+          className="py-2 px-4 bg-red-600 text-white rounded-md hover:bg-red-300"
           onClick={handleClick}
         >
           Create
         </button>
         <div className="flex gap-3">
-          <input className="w-96 h-11 outline-gray-700 px-3" type="text" placeholder="Enter customer name"  />
-          <button className="py-2 px-4  bg-red-600 text-white rounded-md hover:bg-red-300">
+          <input
+            className="w-96 h-11 outline-gray-700 px-3"
+            type="text"
+            placeholder="Enter customer name to search"
+            value={searchTerm}
+            onChange={ (e) => setSearchTerm(e.target.value)}
+          />
+          {/* <button
+            className="py-2 px-4 bg-red-600 text-white rounded-md hover:bg-red-300"
+            onClick={handleSearch}
+          >
             Search
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

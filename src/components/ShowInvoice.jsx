@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { invoices } from "../invoices";
+import { MyContext } from "../Context";
 function ShowInvoice() {
+    const { filteredItems} = useContext (MyContext)
+
   return (
     <div>
       <table className="table">
@@ -15,8 +18,10 @@ function ShowInvoice() {
           </tr>
         </thead>
         <tbody>
-            {invoices && invoices.map ((invoice, index) =>{
+            {filteredItems && filteredItems.map ((invoice, index) =>{
+                    
                 return (
+               
                     <tr className="bg-pink-200" key={index} >
                         <td>{invoice.invoiceNo}</td>
                         <td>{invoice.date}</td>
