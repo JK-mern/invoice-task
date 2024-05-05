@@ -8,51 +8,54 @@ import toast, { Toaster } from "react-hot-toast";
 import Model from "./Model";
 
 function AddInvoice() {
-  const { showAddInvoice, setShowAddItem, showAddItem,invoice,setInvoice,setAddInvoice,setItems, items  } = useContext(MyContext);
-  
+  const {
+    showAddInvoice,
+    setShowAddItem,
+    showAddItem,
+    invoice,
+    setInvoice,
+    setAddInvoice,
+    setItems,
+    setAllInvoice,
+    allInvoice,
+    setFilteredItems,
+  } = useContext(MyContext);
 
   const handleAddTask = () => {
     setShowAddItem(!showAddItem);
   };
 
-  const handleChange = (e) =>{
-    setInvoice ({...invoice, [e.target.id] : e.target.value})
-  }
+  const handleChange = (e) => {
+    setInvoice({ ...invoice, [e.target.id]: e.target.value });
+  };
 
-
-
-  const handleSave = () =>{
-
-    if(!invoice.invoiceNo || !invoice.customerName || !invoice.date)
-      {
-        toast.error("Please fill out all fields")
-        return
-      }
-    invoices.push(invoice)
+  const handleSave = () => {
+    if (!invoice.invoiceNo || !invoice.customerName || !invoice.date) {
+      toast.error("Please fill out all fields");
+      return;
+    }
+    setAllInvoice([...allInvoice, invoice]);
+    setFilteredItems([...allInvoice, invoice]);
     setAddInvoice(!showAddInvoice);
-    setItems([])
-    
+    setItems([]);
+  };
 
-  }
-
-
-
-  const handleCancel = () =>{
+  const handleCancel = () => {
     setAddInvoice(!showAddInvoice);
-  }
-
-
+  };
 
   return (
     <>
       {showAddInvoice && (
-     <Model width="1000px">
+        <Model width="1000px">
           <Toaster />
           <div className="flex justify-between  bg-red-600  py-3  items-center">
-          <h4 className="text-whitepy-3 pl-3 text-white">Create Invoice</h4>
-          <button onClick={handleCancel} className="mr-3 p-3 btn bg-red-300">cancel</button>
+            <h4 className="text-whitepy-3 pl-3 text-white">Create Invoice</h4>
+            <button onClick={handleCancel} className="mr-3 p-3 btn bg-red-300">
+              cancel
+            </button>
           </div>
-         
+
           <div className="bg-red-300  ">
             <div className="flex gap-10">
               <div className="flex justify-between pt-5 ml-2 pb-5 ">
@@ -85,7 +88,6 @@ function AddInvoice() {
                   id="customerName"
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   onChange={handleChange}
-
                 />
               </div>
             </div>
@@ -101,13 +103,16 @@ function AddInvoice() {
           <Items />
           <Calculate />
           <div className="flex justify-end   bg-red-300 ">
-          <button className="mr-10 py-3 px-5 btn bg-red-600 text-white mb-4 hover:text-red-700" onClick={handleSave}>Save</button>
+            <button
+              className="mr-10 py-3 px-5 btn bg-red-600 text-white mb-4 hover:text-red-700"
+              onClick={handleSave}
+            >
+              Save
+            </button>
           </div>
-     </Model>
-   
+        </Model>
       )}
       <AddItems />
-
     </>
   );
 }

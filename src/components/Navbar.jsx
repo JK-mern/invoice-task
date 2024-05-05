@@ -24,10 +24,10 @@ function Navbar() {
 
   return (
     <div>
-      <div className="bg-red-600 m-b-5 p-3 items-center">
-        <h2 className="text-white">Invoice</h2>
+      <div className="bg-red-600  py-3 px-4 items-center">
+        <h2 className="text-white py-1">Invoice</h2>
       </div>
-      <div className="flex justify-between p-2 bg-red-100">
+      <div className="flex justify-between py-2 px-4 bg-red-100">
         <button
           className="py-2 px-4 bg-red-600 text-white rounded-md hover:bg-red-300"
           onClick={handleClick}
