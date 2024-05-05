@@ -1,6 +1,6 @@
-### Running Your React Project
+### How to run the project
 
-Follow these steps to run your React project:
+Follow these steps to run the React project:
 
 1. **Clone the Repository:**
    ```bash
