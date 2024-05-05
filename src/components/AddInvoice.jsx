@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import Items from "./Items";
 import { MyContext } from "../Context";
 import AddItems from "./AddItems";
 import Calculate from "./Calculate";
 import { invoices } from "../invoices";
+import Items from "./Items";
 import toast, { Toaster } from "react-hot-toast";
 import Model from "./Model";
 
@@ -19,6 +19,7 @@ function AddInvoice() {
     setAllInvoice,
     allInvoice,
     setFilteredItems,
+
   } = useContext(MyContext);
 
   const handleAddTask = () => {
@@ -41,8 +42,11 @@ function AddInvoice() {
   };
 
   const handleCancel = () => {
+    setItems([]);
     setAddInvoice(!showAddInvoice);
+ 
   };
+
 
   return (
     <>
@@ -100,7 +104,7 @@ function AddInvoice() {
               </button>
             </div>
           </div>
-          <Items />
+        <Items />
           <Calculate />
           <div className="flex justify-end   bg-red-300 ">
             <button
