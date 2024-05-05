@@ -38,6 +38,7 @@ function AddInvoice() {
     setAllInvoice([...allInvoice, invoice]);
     setFilteredItems([...allInvoice, invoice]);
     setAddInvoice(!showAddInvoice);
+    setInvoice({})
     setItems([]);
   };
 

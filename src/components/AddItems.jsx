@@ -40,6 +40,7 @@ function AddItems() {
 
     setItems([...items, item]);
     setShowAddItem(!showAddItem);
+    setItem({})
    
   };
 
